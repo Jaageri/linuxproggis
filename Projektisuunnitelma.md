@@ -1,21 +1,21 @@
 # Projektisuunnitelma tor hidden service Banana pi:lle
-1.1 Projektin tausta
+##1.1 Projektin tausta
 Projekti sai alkunsa kun saimme käsiin Banana-Pi tietokoneen ja halusimme keksiä, jotain järkevää tekemistä sillä linuxprojektia varten. Kummallakaan meistä ei ole aiempaa kokemusta sen käytöstä, joten ajattelimme tämän olevan hyvä tapa oppia Linuxia ja tehdä mielenkiintoinen projekti.
 
-1.2 Projektin tehtävä
+##.2 Projektin tehtävä
 Projektin tehtävänä on asentaa Banana-pi:lle käyttöjärjestelmä, tor hidden service ja lopulta asentaa palvelu kuuntelemaan sen porttia.
 
-1.3 Tavoitteet
+##1.3 Tavoitteet
 Tavoitteena on saada asentaa Banana pi:lle käyttöjärjestelmä, tor hidden service ja sitä kuunteleva palvelu onnistuneesti.
 
-1.4 Projektin riskit
+##1.4 Projektin riskit
 Kummallakaan tekijöistä ei ole aikaisempaa kokemusta laitteistosta, eikä kyseisen palvelun käyttöönotosta, joten riskinä on että törmäämme jossain vaiheessa seinään. 
 
-1.5 Projektiorganisaatio
+##1.5 Projektiorganisaatio
 Toteuttajat: Jaakko Laitinen, Henry Kujanpää
 Ohjaaja: Tero Karvinen
 
-1.6 Toteutusympäristö
+##1.6 Toteutusympäristö
 Toteutusympäristönä käytetään Banana Pi M1 tietokonetta seuraavilla spekseillä:
 System-on-chip used 	Allwinner A20
 CPU 	ARM Cortex-A7 Dual-core (ARMv7-A) 1 GHz
