@@ -2,7 +2,7 @@
 ##1.1 Projektin tausta
 Projekti sai alkunsa kun saimme käsiin Banana-Pi tietokoneen ja halusimme keksiä, jotain järkevää tekemistä sillä linuxprojektia varten. Kummallakaan meistä ei ole aiempaa kokemusta sen käytöstä, joten ajattelimme tämän olevan hyvä tapa oppia Linuxia ja tehdä mielenkiintoinen projekti.
 
-##.2 Projektin tehtävä
+##1.2 Projektin tehtävä
 Projektin tehtävänä on asentaa Banana-pi:lle käyttöjärjestelmä, tor hidden service ja lopulta asentaa palvelu kuuntelemaan sen porttia.
 
 ##1.3 Tavoitteet
@@ -25,7 +25,7 @@ Graphics 	Mali-400 MP2
 
 Käyttöjärjestelmäksi laitetaan Bananian, joka on Banana Pi:lle optimoitu Debian image.
 
-1.7 Projektin aikataulu
+##1.7 Projektin aikataulu
 v1 Projektin suunnittelu ja projektisuunnitelman teko
 v2 Projektin aloitus ja käyttöjärjestelmän asennus ja tutustuminen siihen
 v3 Tor Hidden servicen asennus/konfigurointi
