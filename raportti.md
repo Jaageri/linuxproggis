@@ -12,10 +12,7 @@ Bananian-config
 ```
 Alkuun vaihdoimme Root -salasanan ja valitsimme timezoneksi Helsingin.
 
-Näppäimistöksi valitsimme  suomenkielisen näppäimistön.
-```
-Package Configuration - fi_FI.UTF-8 UTF-8.
-```
+Näppäimistöksi valitsimme Package Configuration - fi_FI.UTF-8 UTF-8 eli suomenkielisen näppäimistön.
 
 Järjestelmän kieleksi valitsimme englannin en_US.UTF-8.
 
@@ -33,7 +30,7 @@ shutdown -r now
 
 ###Torin asennus
 
-Aloitimme ajamalla komennot 
+Aloitimme ajamalla komennot:
 ```
 apt-get update ja apt-get upgrade
 ```
@@ -41,12 +38,10 @@ Tämän jälkeene asensimme Torin apt-get komennolla.
 ```
 apt-get install tor 
 ```
-
-
 Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla,
 Hyökkääjä pystyisi esim jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäkän irc-serverin ajamista varten.
 
-
+```
 root@bananapi ~ # adduser admin
 Adding user `admin' ...
 Adding new group `admin' (1000) ...
@@ -64,24 +59,23 @@ Enter the new value, or press ENTER for the default
         Home Phone []:
         Other []:
 Is the information correct? [Y/n] Y
+```
 
 Tämän jälkeen siirsimme unrealircd-paketin adminin homekansioon ja annoimme kaikille oikeudet siihen.
-
+```
 root@bananapi ~ # mv unrealircd-4.0.3.1.tar.gz /home/admin/
 root@bananapi ~ # chmod 777 /home/admin/unrealircd-4.0.3.1.tar.gz
 root@bananapi ~ # su admin
 admin@bananapi:/root$
-
-
+```
 
 Loimme kansion jonne torin konfiguraatioiden pitäisi mennä ja määrittelimme torin konffifiluun että se kuuntelee irkkiporttia 6667. Konffifiluun määriteltiin myös juuri luotu kansio.
-
-
+```
 #mkdir /home/admin/torri    
 #nano /etc/tor/ torrc
 #HiddenServiceDir /home/admin/torri    
 #HiddenServicePort 6667 127.0.0.1:6667 (irkkiportit)
-
+```
 
 Torin buuttaus, jotta uudet konfiguraatiot otettaisiin käyttöön. Ei onnistu.
 
