@@ -78,54 +78,58 @@ Loimme kansion jonne torin konfiguraatioiden pitäisi mennä ja määrittelimme 
 ```
 
 Torin buuttaus, jotta uudet konfiguraatiot otettaisiin käyttöön. Ei onnistu.
-
+```
 /etc/init.d/tor restart
 
 [FAIL] Stopping tor daemon...failed (/usr/bin/tor died: process 17496 not running; or permission denied).
 [ ok ] Starting tor daemon...done.
-
+```
 
 Katsotaan logeista mistä mättää. Ilmeisesti juuri luotu kansio ei kelpaa, koska se ei ole debian-torin omistuksessa.
-
+```
 less /var/log/tor/log
 
 Apr 26 19:07:55.000 [warn] /home/admin/torri is not owned by this user (debian-tor, 106) but by root (0). Perhaps you are running Tor as the wrong user?
-
+```
 
 Luodaan siis homeen kansio debian-tor ja laitetaan se käyttäjän debian-torin omistukseen ja ryhmään.
-
-
+```
 root@bananapi:/home# mkdir debian-tor
 root@bananapi:/home# chown debian-tor debian-tor
 root@bananapi:/home# chgrp debian-tor debian-tor
-
+```
 
 Konffataan hiddenservice-kansioksi tuo juuri tehty debian-tor kansio.
-
+```
 root@bananapi:/home# nano /etc/tor/torrc
-
 HiddenServiceDir /home/debian-tor/
-vaihdetaan konffeihin kansioksi debian-tor
-
+```
 
 Buutataan tori uudestaan ja tällä kertaa se onnistuu hyvin. Käydään katsomassa uudesta hostname tiedostosta torverkon hostnamemme joka on vihk2qce7xi4lhc7.onion 
-
+```
 root@bananapi:/home# /etc/init.d/tor restart
 
 [ ok ] Stopping tor daemon...done.
 [ ok ] Starting tor daemon...done.
-
 less /home/debian-tor/hostname
+```
 
-puretaan tarilla unrealircd paketti ja asennetaan libssl-dev ssl:ää vartem
+puretaan tarilla unrealircd paketti ja asennetaan libssl-dev ssl:ää varten.
 
+Komennossa parametrit zxvf tarkoittavat seuraavaa:
+
+z = unzip eli tarkoittaa purkamista
+x = extract eli viittaa myös pakatun tiedoston purkamiseen
+v = print the filenames verbosely eli tulostaa kaikki asennetut tiedostot 
+f = filename eli tiedoston nimi
+
+```
 tar -xzvf unrealircd-4.0.3.1.tar.gz
 root@bananapi ~ # apt-get install libssl-dev       
+```
 
-
-
-Aloitetaan konffaaminen
-
+Aloitetaan konffaaminen.
+```
 ./Config
 
 
@@ -154,17 +158,18 @@ Locality Name (eg, city) []:.
 Organization Name (eg, company) [IRC geeks]:.
 Organizational Unit Name (eg, section) [IRCd]:.
 Common Name (Full domain of your server) []:vihk2qce7xi4lhc7.onion 
+```
 
-Skipataan kaikki muu, mutta laitetaan domainiksi onion osoitteemme
-
+Skipataan kaikki muu, mutta laitetaan domainiksi onion osoitteemme.
 
 Käännetään irkkiservu lähdekoodista
-
+```
 admin@bananapi:~/unrealircd-4.0.3.1$ make
-
+admin@bananapi:~/unrealircd-4.0.3.1$ make install
+```
 
 Koitetaan käynnistää unrealircd.
-
+```
 admin@bananapi:~/unrealircd-4.0.3.1$ ./unrealircd start
 Starting UnrealIRCd
 
@@ -175,14 +180,14 @@ The configuration file does not exist (/home/admin/unrealircd/conf/unrealircd.co
   https://www.unrealircd.org/docs/Upgrading_from_3.2.x and
   https://www.unrealircd.org/docs/UnrealIRCd_files_and_directories
 admin@bananapi:~/unrealircd-4.0.3.1$
-
+```
 Konffifilua ei löydy, onneksi esimerkki konffifilu löytyi, joten siirsimme sen /unrealircd/conf kansioon nimellä unrealircd.conf 
 
-
+```
 admin@bananapi:~/unrealircd-4.0.3.1$ cp doc/conf/examples/example.conf ../unrealircd/conf/unrealircd.conf
-
+```
 Serverin käynnistys uudestaan, valittelee oletuskonfiguraatiosta.
-
+```
 admin@bananapi:~/unrealircd-4.0.3.1$ ./unrealircd start
 
 Loading IRCd configuration..
@@ -193,9 +198,9 @@ config error: /home/admin/unrealircd/conf/unrealircd.conf:376: set::cloak-keys: 
 config error: /home/admin/unrealircd/conf/unrealircd.conf:386: set::kline-address must be an e-mail or an URL
 config error: 5 errors encountered
 config error: IRCd configuration failed to pass testing
-
+```
 vaihdetaan nanolla nämä kohdilleen unrealircd.conffiin
-
+```
 oper testi {
         class opers;
         mask *@*;
@@ -209,26 +214,22 @@ oper testi {
         swhois "is a Network Administrator";
         vhost netadmin.mynet.org;
 };
-
-3 muutakin kohtaa kohdilleen. Turhia juttuja, koska liittyivät servereiden linkkaamiseen keskenään
+```
+Kolme muutakin kohtaa kohdilleen. Turhia juttuja, koska liittyivät servereiden linkkaamiseen keskenään
 
 Testataan irssillä että se toimii connectaamalla localhostiin eli avattiin irssi ja /connect localhost
 
 Testattiin myös torin kautta toiselta koneelta ja toimii hyvin. Tori osaa reitittää liinketeen natin ohi ilman mitään portforwardingeja.
 
 Ajattelimme että serveriä voi käyttää vain ssl:ällä, joten konffataan hiddenserviceportiksi ircserverin ssl portti
-
+```
 nano /etc/tor/torrc
 HiddenServicePort 6697 127.0.0.1:6697
+```
 
+Poistetaan turhat linkit unrealin conffeista ja lisäillään tarpeellisia konffeja.
 
-
-
-
-5 !irc.foonet.com *** Y muista vaihtaa conffifiluun
-
-poistetaan turhat linkit unrealin conffeista ja lisäillään tarpeellisia konffeja
-
+```
 #link hub.mynet.org
 #{
 #       incoming {
@@ -261,9 +262,9 @@ admin {
         "oppilas";
 
 };
-
-pois koska emme ole linkkaamassa servua.
-
+```
+Pois koska emme ole linkkaamassa servua.
+```
 #class servers
 #{
 #       pingfreq 60;
@@ -271,11 +272,11 @@ pois koska emme ole linkkaamassa servua.
 #       maxclients 10; /* max servers */
 #       sendq 5M;
 #};
+```
 
 
-
-pois koska allowattu kaikki toisessa conffissa
-
+Pois koska allowattu kaikki toisessa conffissa
+```
 /* Example of a special allow block on a specific IP:
  * Requires users on that IP to connect with a password. If the password
  * is correct then it permits 20 connections on that IP.
@@ -286,9 +287,10 @@ pois koska allowattu kaikki toisessa conffissa
         password "somesecretpasswd";
         maxperip 20;
 };
+```
 
-
-vaihdettiin maski siten että mistään muualta kuin localhostista ei voi olla oper vaikka salasana olisi tiedossa.
+Vaihdettiin maski siten että mistään muualta kuin localhostista ei voi olla oper vaikka salasana olisi tiedossa.
+```
 oper testi {
         class opers;
         mask *@localhost;
@@ -297,29 +299,29 @@ oper testi {
         swhois "is a Network Administrator";
         vhost linuxprojekti;
 };
+```
 
-
-pois koska vain ssl
-
+Pois koska vain ssl.
+```
 /* Standard IRC port 6667 */
 listen {
         ip *;
         port 6667;
 };
+```
 
-
-
-pois koska ei linkkejä
+```
+Pois koska ei linkkejä
 /* Special SSL/TLS servers-only port for linking */
 listen {
         ip *;
         port 6900;
         options { ssl; serversonly; };
 };
+```
 
-
-pois ei haluta linkkejä
-
+Pois ei haluta linkkejä
+```
 link hub.mynet.org
 {
         incoming {
@@ -337,14 +339,10 @@ link hub.mynet.org
 
         class servers;
 };
-
-
-
-
-
+```
 
 Vaihdettiin networknamet ja defaultserverit kuntoon.
-
+```
 set {
         network-name            "Linuxprojektiserver";
         default-server          "vihk2qce7xi4lhc7.onion";
@@ -354,16 +352,11 @@ set {
         hiddenhost-prefix       "Clk";
         prefix-quit             "Quit";
 
+```
 
+Pois ei linkkejä
 
-
-
-
-
-
-pois ei linkkejä
-
-
+```
 /* U-lines give other servers (even) more power/commands.
  * If you use services you must add them here.
  * NEVER put the name of a (normal) UnrealIRCd server here!!!
@@ -373,35 +366,39 @@ pois ei linkkejä
 ulines {
         services.mynet.org;
 };
+```
 
 Tehdään message of the day tiedosto ja rehashataan konffit servuun
-
+```
 admin@bananapi:~/unrealircd/conf$ nano ircd.motd
 
 admin@bananapi:~/unrealircd$ ./unrealircd rehash
 
+```
 
-
-
-
-
-
-
-
-Laitetaan vielä unrealircd ajamaan cloak moduulia, joka piilottaa käyttäjien hostnamet ja ip:t
-
+Laitetaan vielä unrealircd ajamaan cloak moduulia, joka piilottaa käyttäjien hostnamet ja ip:t.
+```
 admin@bananapi:~/unrealircd/conf$ nano unrealircd.conf
 
 loadmodule "cloak";
-
+```
 
 
 Valitettavasti ssl, yhdistäminen ei toiminut irssin avulla, joten konffasimme torin ja unrealicd:n kuuntelemaan myös porttia 6667. Xchat osasi yhdistää ssl:ällä myös.
 
 servun käynnistys admin käyttäjällä
-
+```
  ../unrealircd restart
+```
 
+Lähteet: 
 
+https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29
+https://www.torproject.org/docs/debian.html.en
+https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/IrcSilc
 
+https://en.wikipedia.org/wiki/UnrealIRCd
+http://wiki.swiftirc.net/index.php?title=Installing_and_Configuring_UnrealIRCd_on_Linux
+https://www.unrealircd.org/docs/Configuration
+https://www.unrealircd.org/docs/Cloaking
 
