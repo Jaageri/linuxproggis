@@ -12,27 +12,35 @@ Bananian-config
 ```
 Alkuun vaihdoimme Root -salasanan ja valitsimme timezoneksi Helsingin.
 
-Package Configuration - näppäimistöksi valitsimme fi_FI.UTF-8 UTF-8.
+Näppäimistöksi valitsimme  suomenkielisen näppäimistön.
+```
+Package Configuration - fi_FI.UTF-8 UTF-8.
+```
 
 Järjestelmän kieleksi valitsimme englannin en_US.UTF-8.
 
 Hostnameksi määritimme bananapi.
 
-Jätimme hardware configuraation BananaPi:ksi.
+Jätimme hardware configuraationin BananaPi:ksi.
 
 Lisäksi laajensimme Rootin tiedostojärjestelmää.
 
-Lopulta käynnistimme tietokoneen uudestaan shutdown -r now -komennolla.
+Lopulta käynnistimme tietokoneen uudestaan.
 
+```
+shutdown -r now
+```
 
-Torin asennus
+###Torin asennus
 
-Aloitimme ajamalla komennot apt-get update ja apt-get upgrade
-
+Aloitimme ajamalla komennot 
+```
+apt-get update ja apt-get upgrade
+```
 Tämän jälkeene asensimme Torin apt-get komennolla.
-
+```
 apt-get install tor 
-
+```
 
 
 Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla,
