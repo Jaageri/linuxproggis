@@ -415,12 +415,12 @@ Servun käynnistys admin -käyttäjällä.
 
 Lähteet: 
 
-https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29
-https://www.torproject.org/docs/debian.html.en
-https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/IrcSilc
+https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29  
+https://www.torproject.org/docs/debian.html.en  
+https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/IrcSilc  
 
-https://en.wikipedia.org/wiki/UnrealIRCd
-http://wiki.swiftirc.net/index.php?title=Installing_and_Configuring_UnrealIRCd_on_Linux
-https://www.unrealircd.org/docs/Configuration
-https://www.unrealircd.org/docs/Cloaking
+https://en.wikipedia.org/wiki/UnrealIRCd  
+http://wiki.swiftirc.net/index.php?title=Installing_and_Configuring_UnrealIRCd_on_Linux  
+https://www.unrealircd.org/docs/Configuration  
+https://www.unrealircd.org/docs/Cloaking  
 
