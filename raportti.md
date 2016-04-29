@@ -135,7 +135,7 @@ root@bananapi:/home# /etc/init.d/tor restart
 less /home/debian-tor/hostname
 ```
 
-puretaan tarilla unrealircd paketti ja asennetaan libssl-dev ssl:ää varten.
+Puretaan tarilla unrealircd paketti ja asennetaan libssl-dev ssl:ää varten.
 
 Komennossa parametrit zxvf tarkoittavat seuraavaa:
 
@@ -162,10 +162,11 @@ Generating certificate request ..
               -config src/ssl.cnf -sha256 -out server.req.pem \
               -keyout server.key.pem -nodes
 Generating a 4096 bit RSA private key
-
+```
 
 Laitetaan ssl mukaan salakuuntelun ehkäisemiseksi.
 
+```
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
 What you are about to enter is what is called a Distinguished Name or a DN.
@@ -183,7 +184,7 @@ Common Name (Full domain of your server) []:vihk2qce7xi4lhc7.onion
 
 Skipataan kaikki muu, mutta laitetaan domainiksi onion osoitteemme.
 
-Käännetään irkkiservu lähdekoodista
+Käännetään irkkiservu lähdekoodista.
 ```
 admin@bananapi:~/unrealircd-4.0.3.1$ make
 admin@bananapi:~/unrealircd-4.0.3.1$ make install
@@ -220,7 +221,7 @@ config error: /home/admin/unrealircd/conf/unrealircd.conf:386: set::kline-addres
 config error: 5 errors encountered
 config error: IRCd configuration failed to pass testing
 ```
-vaihdetaan nanolla nämä kohdilleen unrealircd.conffiin
+Vaihdetaan nanolla nämä kohdilleen unrealircd.conffiin
 ```
 oper testi {
         class opers;
@@ -236,13 +237,13 @@ oper testi {
         vhost netadmin.mynet.org;
 };
 ```
-Kolme muutakin kohtaa kohdilleen. Turhia juttuja, koska liittyivät servereiden linkkaamiseen keskenään
+Kolme muutakin kohtaa kohdilleen. Turhia juttuja, koska liittyivät servereiden linkkaamiseen keskenään.
 
-Testataan irssillä että se toimii connectaamalla localhostiin eli avattiin irssi ja /connect localhost
+Testataan irssillä että se toimii connectaamalla localhostiin eli avattiin irssi ja /connect localhost.
 
 Testattiin myös torin kautta toiselta koneelta ja toimii hyvin. Tori osaa reitittää liinketeen natin ohi ilman mitään portforwardingeja.
 
-Ajattelimme että serveriä voi käyttää vain ssl:ällä, joten konffataan hiddenserviceportiksi ircserverin ssl portti
+Ajattelimme että serveriä voi käyttää vain ssl:ällä, joten konffataan hiddenserviceportiksi ircserverin ssl -portti.
 ```
 nano /etc/tor/torrc
 HiddenServicePort 6697 127.0.0.1:6697
@@ -341,7 +342,7 @@ listen {
 };
 ```
 
-Pois ei haluta linkkejä
+Pois ei haluta linkkejä.
 ```
 link hub.mynet.org
 {
@@ -375,7 +376,7 @@ set {
 
 ```
 
-Pois ei linkkejä
+Pois ei linkkejä.
 
 ```
 /* U-lines give other servers (even) more power/commands.
@@ -389,7 +390,7 @@ ulines {
 };
 ```
 
-Tehdään message of the day tiedosto ja rehashataan konffit servuun
+Tehdään message of the day tiedosto ja rehashataan konffit servuun.
 ```
 admin@bananapi:~/unrealircd/conf$ nano ircd.motd
 
@@ -407,7 +408,7 @@ loadmodule "cloak";
 
 Valitettavasti ssl, yhdistäminen ei toiminut irssin avulla, joten konffasimme torin ja unrealicd:n kuuntelemaan myös porttia 6667. Xchat osasi yhdistää ssl:ällä myös.
 
-servun käynnistys admin käyttäjällä
+Servun käynnistys admin -käyttäjällä.
 ```
  ../unrealircd restart
 ```
