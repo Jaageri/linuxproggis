@@ -82,7 +82,7 @@ Enter the new value, or press ENTER for the default
 Is the information correct? [Y/n] Y
 ```
 
-Tämän jälkeen siirsimme unrealircd-paketin adminin homekansioon ja annoimme kaikille oikeudet siihen.
+Tämän jälkeen siirsimme unrealircd-paketin adminin home -kansioon ja annoimme kaikille oikeudet siihen.
 ```
 root@bananapi ~ # mv unrealircd-4.0.3.1.tar.gz /home/admin/
 root@bananapi ~ # chmod 777 /home/admin/unrealircd-4.0.3.1.tar.gz
