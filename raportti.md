@@ -60,8 +60,7 @@ Tämän jälkeene asensimme Torin apt-get komennolla.
 ```
 apt-get install tor 
 ```
-Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla,
-Hyökkääjä pystyisi esim jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäkän irc-serverin ajamista varten.
+Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla hyökkääjä pystyisi esim. jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäjän irc-serverin ajamista varten.
 
 ```
 root@bananapi ~ # adduser admin
