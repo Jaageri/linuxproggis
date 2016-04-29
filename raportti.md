@@ -1,7 +1,7 @@
 #IRC -serveri Torin takana
 
 ###Tavoite
-Projektin tavoite oli asentaa Banana-pi:lle käyttöjärjestelmä, tor hidden service ja asentaa unrealircd kuuntelemaan sen porttia.
+Projektin tavoite oli asentaa Banana-pi:lle käyttöjärjestelmä, unrealircd ja asentaa tor hidden service kuuntelemaan IRC -porttia.
 
 ### Yleistä tietoa
 Tor (The Onion Router) on ohjelmisto, joka mahdollistaa internetin käytön anonyymina ja sensuurin kiertämisen.
