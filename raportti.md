@@ -61,39 +61,6 @@ Tämän jälkeene asensimme Torin apt-get komennolla.
 apt-get install tor 
 ```
 
-###UnrealIRCd asennus
-
-Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla hyökkääjä pystyisi esim. jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäjän irc-serverin ajamista varten.
-
-```
-root@bananapi ~ # adduser admin
-Adding user `admin' ...
-Adding new group `admin' (1000) ...
-Adding new user `admin' (1000) with group `admin' ...
-Creating home directory `/home/admin' ...
-Copying files from `/etc/skel' ...
-Enter new UNIX password:
-Retype new UNIX password:
-passwd: password updated successfully
-Changing the user information for admin
-Enter the new value, or press ENTER for the default
-        Full Name []:
-        Room Number []:
-        Work Phone []:
-        Home Phone []:
-        Other []:
-Is the information correct? [Y/n] Y
-```
-
-Latasimme asennus -tiedoston.Tämän jälkeen siirsimme unrealircd-paketin adminin home -kansioon ja annoimme kaikille oikeudet siihen.
-```
-root@bananapi ~ # wget https://www.unrealircd.org/unrealircd4/unrealircd-4.0.3.1.tar.gz
-root@bananapi ~ # mv unrealircd-4.0.3.1.tar.gz /home/admin/
-root@bananapi ~ # chmod 777 /home/admin/unrealircd-4.0.3.1.tar.gz
-root@bananapi ~ # su admin
-admin@bananapi:/root$
-```
-
 Loimme kansion jonne torin konfiguraatioiden pitäisi mennä ja määrittelimme torin konffifiluun että se kuuntelee irkkiporttia 6667. Konffifiluun määriteltiin myös juuri luotu kansio.
 ```
 #mkdir /home/admin/torri    
@@ -137,6 +104,39 @@ root@bananapi:/home# /etc/init.d/tor restart
 [ ok ] Stopping tor daemon...done.
 [ ok ] Starting tor daemon...done.
 less /home/debian-tor/hostname
+```
+
+###UnrealIRCd asennus
+
+Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla hyökkääjä pystyisi esim. jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäjän irc-serverin ajamista varten.
+
+```
+root@bananapi ~ # adduser admin
+Adding user `admin' ...
+Adding new group `admin' (1000) ...
+Adding new user `admin' (1000) with group `admin' ...
+Creating home directory `/home/admin' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Changing the user information for admin
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] Y
+```
+
+Latasimme asennus -tiedoston.Tämän jälkeen siirsimme unrealircd-paketin adminin home -kansioon ja annoimme kaikille oikeudet siihen.
+```
+root@bananapi ~ # wget https://www.unrealircd.org/unrealircd4/unrealircd-4.0.3.1.tar.gz
+root@bananapi ~ # mv unrealircd-4.0.3.1.tar.gz /home/admin/
+root@bananapi ~ # chmod 777 /home/admin/unrealircd-4.0.3.1.tar.gz
+root@bananapi ~ # su admin
+admin@bananapi:/root$
 ```
 
 Puretaan tarilla unrealircd paketti ja asennetaan libssl-dev ssl:ää varten.
