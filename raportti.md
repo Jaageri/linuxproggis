@@ -60,6 +60,9 @@ Tämän jälkeene asensimme Torin apt-get komennolla.
 ```
 apt-get install tor 
 ```
+
+###UnrealIRCd asennus
+
 Aloitimme ensiksi asentamaan irkkiservua root-käyttäjälle, mutta tajusimme ettei se ole järkevä ratkaisu. Jos irc-serverissä olisi ollut jotain aukkoja ja se pyörisi rootilla hyökkääjä pystyisi esim. jo pelkällä puskurin ylivuodolla ajamaan omaa koodiansa ja ottamaan koneen haltuun. Sen takia teimme admin nimisen käyttäjän irc-serverin ajamista varten.
 
 ```
@@ -82,8 +85,9 @@ Enter the new value, or press ENTER for the default
 Is the information correct? [Y/n] Y
 ```
 
-Tämän jälkeen siirsimme unrealircd-paketin adminin home -kansioon ja annoimme kaikille oikeudet siihen.
+Latasimme asennus -tiedoston.Tämän jälkeen siirsimme unrealircd-paketin adminin home -kansioon ja annoimme kaikille oikeudet siihen.
 ```
+root@bananapi ~ # wget https://www.unrealircd.org/unrealircd4/unrealircd-4.0.3.1.tar.gz
 root@bananapi ~ # mv unrealircd-4.0.3.1.tar.gz /home/admin/
 root@bananapi ~ # chmod 777 /home/admin/unrealircd-4.0.3.1.tar.gz
 root@bananapi ~ # su admin
