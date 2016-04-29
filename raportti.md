@@ -3,6 +3,28 @@
 ###Tavoite
 Projektin tavoite oli asentaa Banana-pi:lle käyttöjärjestelmä, tor hidden service ja asentaa unrealircd kuuntelemaan sen porttia.
 
+### Yleistä tietoa
+Tor (The Onion Router) on ohjelmisto, joka mahdollistaa internetin käytön anonyymina ja sensuurin kiertämisen.
+Se on suunniteltu mahdollistamaan sitä käyttävien henkilöiden internetin selaamisen anonyymina niin, että valtion virastot, 
+yritykset tai muut tahot eivät voi havaita heidän tekemisiään tai sijaintia.
+
+- Julkaistu 20.9.2002
+- Alusta riippumaton
+- Vapaa ohjelmisto
+- Viimeisin vakaa julkaisu 11.12.2015 versio 0.2.7.6
+
+UnrealIRCd on avoimen lähdekoodin IRC demoni. Vuoden 1999 julkaisun jälkeen sitä on kehitetty paljon ja
+siihen on lisätty uusia toimintoja ja ominaisuuksia, kuten turvallisuus ominaisuuksia ja bugien korjauksia.
+
+- Julkaistu Toukokuussa 1999
+- Toimii Unixiin pohjautuvissa -käyttöjärjestelmissä ja Widows -käyttöjärjestelmissä
+- Viimeisin vakaa julkaisu 24.12.2015 versio 4.0.0
+
+### Toteutusympäristö
+
+Toteutusympäristönä käytetään Banana Pi M1 tietokonetta seuraavilla spekseillä: System-on-chip used Allwinner A20 CPU ARM Cortex-A7 Dual-core (ARMv7-A) 1 GHz Memory 1 GB Storage SD card & SATA 2.0 Graphics Mali-400 MP2 Käyttöjärjestelmäksi laitetaan Bananian 3.4.108, joka on Banana Pi:lle optimoitu Debian image.
+
+
 ###Bananian konfigurointi
 
 Ensiksi ajoimme Banian interaktiivisen alkukonfiguroinnin.
