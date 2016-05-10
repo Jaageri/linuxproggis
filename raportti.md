@@ -416,7 +416,9 @@ Servun käynnistys admin -käyttäjällä.
 ```
  ../unrealircd restart
 ```
+##HUOM
 
+Emme pysty takaamaan täyttä turvallisuutta keskusteluihin koska kattavaa tietoturva-auditointia ei olla tehty. Serveri otetaan pois käytöstä 10.5.2016 projektin demoamisen jälkeen, joten yhdistäminen ei enää onnistu.
 Lähteet: 
 
 https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29  
