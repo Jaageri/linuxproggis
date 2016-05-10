@@ -17,7 +17,7 @@ UnrealIRCd on avoimen lähdekoodin IRC demoni. Vuoden 1999 julkaisun jälkeen si
 siihen on lisätty uusia toimintoja ja ominaisuuksia, kuten turvallisuus ominaisuuksia ja bugien korjauksia. Valitsimme UnrealIRCd, koska sillä on yleinen maine erittäin turvallisena IRC-serverinä ja se on nykyään yksi suosituimmista IRC-servereistä.
 
 - Julkaistu Toukokuussa 1999
-- Toimii Unixiin pohjautuvissa -käyttöjärjestelmissä ja Widows -käyttöjärjestelmissä
+- Toimii Unixiin pohjautuvissa -käyttöjärjestelmissä ja Windows -käyttöjärjestelmissä
 - Viimeisin vakaa julkaisu 24.12.2015 versio 4.0.0
 
 ### Toteutusympäristö
